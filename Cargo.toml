@@ -1,0 +1,8 @@
+[package]
+name = "game"
+version = "0.1.0"
+authors = ["charlesworth <cochrane26@gmail.com>"]
+
+[dependencies]
+sdl2 = "0.17"
+#sdl2_image = "1.0.0"
