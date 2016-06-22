@@ -1,8 +1,10 @@
 extern crate sdl2;
 mod events;
+mod window_io;
 
 use sdl2::pixels::Color;
 use events::Events;
+use window_io::{WindowIO, View, ViewAction};
 
 fn main() {
     // Initialize SDL2
