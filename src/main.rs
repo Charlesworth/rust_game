@@ -1,8 +1,8 @@
 extern crate sdl2;
 mod events;
 mod window_io;
+mod views;
 
-use sdl2::pixels::Color;
 use events::Events;
 use window_io::{WindowIO, View, ViewAction};
 
@@ -16,25 +16,23 @@ fn main() {
         .position_centered().opengl()
         .build().unwrap();
 
-    let mut renderer = window.renderer()
-        .accelerated()
-        .build().unwrap();
+    // Create the context
+    let mut context = WindowIO {
+        events: Events::new(sdl_context.event_pump().unwrap()),
+        renderer: window.renderer()
+            .accelerated()
+            .build().unwrap(),
+    };
 
-    let mut events = Events::new(sdl_context.event_pump().unwrap());
+    // Create the default view
+    let mut current_view: Box<View> = Box::new(::views::DefaultView);
 
     loop {
-        events.pump();
+        context.events.pump();
 
-        if events.quit {
-            break;
+        match current_view.render(&mut context, 0.01) {
+            ViewAction::None => context.renderer.present(),
+            ViewAction::Quit => break,
         }
-
-        if events.up {
-            println!("up");
-        }
-
-        renderer.set_draw_color(Color::RGB(0, 0, 0));
-        renderer.clear();
-        renderer.present();
     }
 }
