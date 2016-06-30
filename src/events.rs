@@ -1,5 +1,7 @@
 use sdl2::EventPump;
 
+// The 'Events' object is used to get events from the SDL EventPump
+// and match them to its internal set of event bools
 pub struct Events {
     pump: EventPump,
 
@@ -12,6 +14,7 @@ pub struct Events {
 }
 
 impl Events {
+    // make a new Event object by passing a SDL EventPump
     pub fn new(pump: EventPump) -> Events {
         Events {
             pump: pump,
@@ -25,7 +28,7 @@ impl Events {
         }
     }
 
-    /// Update the events record.
+    /// Update the events record by pattern matching the EventPump's output
     pub fn pump(&mut self) {
         // If the SDL context is dropped, then poll_iter() will simply stop
         // yielding any input.

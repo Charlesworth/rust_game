@@ -8,7 +8,7 @@ impl View for DefaultView {
         let renderer = &mut context.renderer;
         let events = &context.events;
 
-    
+
         if events.quit {
             return ViewAction::Quit;
         }

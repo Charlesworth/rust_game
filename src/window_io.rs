@@ -1,10 +1,11 @@
 use sdl2::render::Renderer;
 use events::Events;
 
-/// Bundles the Phi abstractions in a single structure which
+/// Bundles the window_io abstractions in a single structure which
 /// can be passed easily between functions.
 pub struct WindowIO<'window> {
     pub events: Events,
+    // we don't want the renderer to outlive the window
     pub renderer: Renderer<'window>,
 }
 
@@ -16,6 +17,9 @@ pub enum ViewAction {
     Quit,
 }
 
+// The 'View' trait allows us to pass different view objects into the main loop,
+// for instance the starting menu and game views both need to implement this
+// view trait to be rendered.
 pub trait View {
     /// Called on every frame to take care of both the logic and
     /// the rendering of the current view.
