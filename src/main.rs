@@ -1,12 +1,12 @@
 extern crate sdl2;
-mod events;
-mod window_io;
+// mod events;
+// mod window_io;
 mod views;
-// mod game_timer;
+mod utility;
 
-use events::Events;
-use window_io::{WindowIO, View, ViewAction};
-// use game_timer::Game_timer;
+use utility::events::Events;
+use utility::window_io::{WindowIO, View, ViewAction};
+// use utility::game_timer::Game_timer;
 
 fn main() {
     // Initialize SDL2
@@ -35,7 +35,6 @@ fn main() {
     let mut before = timer.ticks();
     let mut last_second = timer.ticks();
     let mut fps = 0u16;
-
 
     loop {
         // Frame timing (bis)

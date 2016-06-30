@@ -1,28 +1,23 @@
-mod menu_view;
-
 use utility::window_io::{WindowIO, View, ViewAction};
 use sdl2::pixels::Color;
 
-pub struct DefaultView;
+pub struct MenuView;
 
-impl View for DefaultView {
+impl View for MenuView {
     fn render(&mut self, context: &mut WindowIO, _: f64) -> ViewAction {
         let renderer = &mut context.renderer;
         let events = &context.events;
 
-        if events.quit {
+        if events.quit == true {
             return ViewAction::Quit;
         }
 
-        if events.up {
-            println!("up");
+        if events.left && events.down {
+            renderer.set_draw_color(Color::RGB(0, 0, 255));
+        } else {
+            renderer.set_draw_color(Color::RGB(255, 0, 0));
         }
 
-        if events.down {
-            return ViewAction::ChangeView(Box::new(menu_view::MenuView))
-        }
-
-        renderer.set_draw_color(Color::RGB(0, 0, 0));
         renderer.clear();
 
         ViewAction::None

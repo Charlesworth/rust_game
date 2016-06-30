@@ -1,5 +1,5 @@
 use sdl2::render::Renderer;
-use events::Events;
+use utility::events::Events;
 
 /// Bundles the window_io abstractions in a single structure which
 /// can be passed easily between functions.
