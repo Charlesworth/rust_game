@@ -15,6 +15,7 @@ pub struct WindowIO<'window> {
 pub enum ViewAction {
     None,
     Quit,
+    ChangeView(Box<View>)
 }
 
 // The 'View' trait allows us to pass different view objects into the main loop,

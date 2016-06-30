@@ -45,6 +45,7 @@ impl Events {
                     Some(Down) => self.down = true,
                     Some(Left) => self.left = true,
                     Some(Right) => self.right = true,
+                    Some(Escape) => self.quit = true,
                     _ => {}
                 },
 

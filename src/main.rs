@@ -2,9 +2,11 @@ extern crate sdl2;
 mod events;
 mod window_io;
 mod views;
+// mod game_timer;
 
 use events::Events;
 use window_io::{WindowIO, View, ViewAction};
+// use game_timer::Game_timer;
 
 fn main() {
     // Initialize SDL2
@@ -27,12 +29,13 @@ fn main() {
 
     // Create the default view
     let mut current_view: Box<View> = Box::new(::views::DefaultView);
-//
-// Frame timing
+
+    // Frame timing
     let interval = 1_000 / 60;
     let mut before = timer.ticks();
     let mut last_second = timer.ticks();
     let mut fps = 0u16;
+
 
     loop {
         // Frame timing (bis)
@@ -56,13 +59,13 @@ fn main() {
             last_second = now;
             fps = 0;
         }
-//
-    //loop {
+
         context.events.pump();
 
         match current_view.render(&mut context, 0.01) {
             ViewAction::None => context.renderer.present(),
             ViewAction::Quit => break,
+            ViewAction::ChangeView(new_view) => current_view = new_view,
         }
     }
 }
