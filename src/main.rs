@@ -1,6 +1,4 @@
 extern crate sdl2;
-// mod events;
-// mod window_io;
 mod views;
 mod utility;
 
